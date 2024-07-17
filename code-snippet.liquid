@@ -1,0 +1,112 @@
+<h4 class="recommended_products_title">Other Variants </h4>
+ 
+
+{% if shop.metaobjects.lp_info.values != blank %} 
+  <div class="recommended_products">
+   {% for metaobject in shop.metaobjects.lp_info.values %}
+     
+      <div class="product_container" data-tag="{{ last_tag }}">
+        <a href="{{ metaobject.link }}" class="scroll-link">
+          {{ metaobject.media | image_url: width: 400 | image_tag }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %} 
+
+
+<style>
+
+#m-1720779743964{
+}
+.recommended_products .product_container{
+	position: relative;
+	display: flex;
+	flex-basis: 56px;
+	height: 56px;
+}
+.recommended_products .product_tag_container .product_tag{
+	display: none;
+	font-size: 14px;
+	color: #000;
+}
+.product_container:hover .product_tag_container .product_tag{
+	display: inline;
+}
+.recommended_products_title{
+	font-family: Poppins;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 32px;
+	margin-bottom: 10px;
+	letter-spacing: 1px;
+	text-transform: capitalize;
+}
+.recommended_products{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 30px;
+}
+.recommended_products a{
+	display: block;
+	overflow: hidden;
+	border: 2px solid white !important;
+	border-radius: 50%;
+}
+.recommended_products a img{
+	width: 56px;
+	height: 56px;
+	object-fit: cover;
+	border: 1px solid transparent;
+	transition-duration: 0.3s;
+	border-radius: 100%;
+	transform: scale(3);
+}
+.recommended_products a:hover{
+	border: 2px solid #ffffff;
+	box-shadow: 0 0 0 2px #0071e3 !important;
+}
+
+</style>
+
+<script>
+(function($) {
+    $(window).on('load', function() {
+        setTimeout(function() {
+            const section = document.querySelector('#m-1698342249979');
+
+            if (section) {
+                const scrollToSection = (target, duration) => {
+                    const targetPosition = target.getBoundingClientRect().top;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition;
+                    let startTime = null;
+
+                    const ease = (t, b, c, d) => {
+                        t /= d / 2;
+                        if (t < 1) return c / 2 * t * t + b;
+                        t--;
+                        return -c / 2 * (t * (t - 2) - 1) + b;
+                    };
+
+                    const animation = currentTime => {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        const run = ease(timeElapsed, startPosition, distance, duration);
+                        window.scrollTo(0, run);
+                        if (timeElapsed < duration) requestAnimationFrame(animation);
+                    };
+
+                    requestAnimationFrame(animation);
+                };
+
+                scrollToSection(section,1000); // Adjust duration (in milliseconds) as needed
+            }
+        }, 100); // Adjust delay (in milliseconds) as needed
+    });
+})(window.GemQuery || jQuery);
+
+
+
+</script>
