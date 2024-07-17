@@ -1,4 +1,4 @@
-# metaobject liquid code for page
+# Metaobject Liquid Code for Page
 
 
 ![](https://faridrony55.github.io/all_images/metaobject.png) 
